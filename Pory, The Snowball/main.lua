@@ -5,21 +5,27 @@ main.lua -- Main Game
 -- -> Pory, The snowball...
 
 --------------------------------------------------------------------------------------------]]
-
+ 
 -- Main -- >>
 do -->
     local Vpes = require('content\\scripts\\constants')
 
-    -- Making it easy to pick up screen positions >>
-    local r_pos = require(Vpes.path('relayout'))
+    local I = { -- Imports...
+        r_pos = require(Vpes.path('relayout')),
+        game = require(Vpes.path('init'))
+    }
 
-    local _W, _H, _CX, _CY = r_pos._W, r_pos._H, r_pos._CX, r_pos._CY
-    local LEYOUT_POS = {W = _W, H = _H, CX = _CX, CY =_CY}
+    -- Making it easy to pick up screen positions >>
+    local LEYOUT_POS = {
+        W = I.r_pos._W,   -- > Get position Width!
+        H = I.r_pos._H,   -- > Get position Height!
+        CX = I.r_pos._CX, -- > Get position Center.x!
+        CY = I.r_pos._CY  -- > Get position Center.y!
+    }
     -- <<
 
     -- Game startup... >>
-    local game = require(Vpes.path('init'))
-    game.init(LEYOUT_POS, Vpes)
+    I.game.init(LEYOUT_POS, Vpes)
     -- <<
 
 end --<
